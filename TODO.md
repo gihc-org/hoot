@@ -167,21 +167,34 @@ make check
   i stedet for 0.10.0.
 - `install.txt` er en untracked fil fra brugerens tidligere
   fejlfinding. Den skal bevares, medmindre brugeren beder om andet.
+- `deepseek-git-attribution.md` er et untracked svar fra en
+  søgemaskine. Brug ikke dets `noreply@deepseek.com`-adresse; den er
+  ikke en verificeret Git- eller GitHub-identitet.
 
 ## Git-status
 
-Repositoryet er på branch `trunk`. Det første commit er:
+Repositoryet er på branch `trunk`, som følger `origin/trunk`. De
+relevante publicerede commits er:
 
 ```text
-2c62346725add8ccbbd5f195ac312bfd3bf35124
+a5b7400f4128671c892715a2ec5c92baf24298e9
 Add Guix setup guide and agent attribution policy
+
+53dbfbce0be5b0cebf87ad911c5802f4a46fd1cb
+Document Guix and Hoot handover
 ```
 
-Commitet indeholder:
+Det første commit indeholder:
 
 - `AGENTS.md`
 - `GUIX-TRIXIE-HOOT.md`
 - `install-guix-trixie.sh`
+
+Det andet commit indeholder `TODO.md`.
+
+De to commits er allerede publiceret og skal ikke ændres eller
+force-pushes for at rette deres attribution. Fremtidige commits skal
+bruge den nye `Assisted-by`-regel.
 
 De oprindelige Hoot-projektfiler er fortsat untracked, fordi
 repositoryet blev initialiseret sent. Tilføj ikke hele træet ved et
@@ -190,13 +203,13 @@ uheld.
 `AGENTS.md` kræver begge følgende trailers ved commits:
 
 ```text
-Co-authored-by: OpenAI Codex <codex@openai.com>
-Co-authored-by: DeepSeek <noreply@deepseek.com>
+Assisted-by: OpenAI Codex
+Assisted-by: DeepSeek
 ```
 
 Agentens tidligere `.git`-skrivefejl skyldtes en read-only sandkasse.
-Brugeren har selv kunnet gennemføre amend. Hvis agenten senere skal
-committe, skal skriveadgang til `.git` verificeres først.
+Brugeren har selv kunnet gennemføre commits. Hvis agenten senere ikke
+kan skrive til `.git`, skal commit udføres af brugeren.
 
 ## Handover-prompt til næste session
 
@@ -249,8 +262,9 @@ Vigtigt:
 - Agenten har ikke netværksadgang til at hente Hoot-substitutter.
 - .git var read-only for agenten; hvis commit kræves, skal adgang
   kontrolleres.
-- Hvis commit udføres, skal AGENTS.md's to Co-authored-by-trailers
+- Hvis commit udføres, skal AGENTS.md's to Assisted-by-trailers
   begge med.
+- Brug ikke noreply@deepseek.com eller andre opdigtede adresser.
 
 Byg kun den lokale Hoot-kildekode, hvis brugeren vil udvikle Hoot.
 Guix-pakken 0.10.0 er den anbefalede vej til almindelig brug.
